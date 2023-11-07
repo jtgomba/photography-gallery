@@ -22,8 +22,12 @@ function App() {
   //   Observer.create({
   //     type: "wheel,touch,pointer",
   //     wheelSpeed: -1,
-  //     //onDown: scrollFn,
-  //     //onUp: scrollFn,
+  //     onDown: () => {
+  //       navigate("prev");
+  //     },
+  //     onUp: () => {
+  //       navigate("next");
+  //     },
   //     tolerance: 10,
   //     preventDefault: true,
   //   })
@@ -44,7 +48,7 @@ function App() {
     }
     setIsAnimating(true);
 
-    //scrollObserver.current.enable();
+    // scrollObserver.current.enable();
 
     body.classList.add("oh");
 
@@ -290,6 +294,10 @@ function App() {
         0.2
       );
   }
+
+  useEffect(() => {
+    // scrollObserver.current.disable();
+  }, []);
 
   return (
     <div className="loading">
