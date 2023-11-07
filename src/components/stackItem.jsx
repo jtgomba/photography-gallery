@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
 import { useAnimActions } from "../hooks/animStore";
 
-const StackItem = ({ id, callback }) => {
+const StackItem = ({ id, callback, img }) => {
   const stackItem = useRef();
   const { setCurrent } = useAnimActions();
 
   return (
     <div
       className="stack__item"
-      style={{ backgroundImage: "url(/img/1.jpg)" }}
+      style={{ backgroundImage: `url(${img})` }}
       ref={stackItem}
       onClick={async (e) => {
         setCurrent(id);

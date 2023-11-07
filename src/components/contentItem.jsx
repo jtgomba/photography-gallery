@@ -2,7 +2,11 @@ import React, { useRef, useEffect } from "react";
 import { useAnimActions, useAnimProps } from "../hooks/animStore";
 import { gsap } from "gsap";
 
-const ContentItem = ({ id, location = "Osaka" }) => {
+const ContentItem = ({ id,
+  title1,
+  title2,
+  subtitle,
+  desc }) => {
   const el = useRef(null);
   const title = useRef(null);
   const description = useRef(null);
@@ -39,22 +43,21 @@ const ContentItem = ({ id, location = "Osaka" }) => {
         className="content__item-title"
         ref={title}>
         <span className="oh">
-          <span className="oh__inner">Queen of </span>
+          <span className="oh__inner">{title1}</span>
         </span>
         <span className="oh">
-          <span className="oh__inner">the Sea</span>
+          <span className="oh__inner">{title2}</span>
         </span>
       </h2>
       <div
         className="content__item-description"
         ref={description}>
         <p className="oh">
-          <strong className="oh__inner">{location}, 1986</strong>
+          <strong className="oh__inner">{subtitle}</strong>
         </p>
         <p className="oh">
           <span className="oh__inner">
-            Hidesato felt very sorry for the Dragon King on hearing his story,
-            and readily promised to do what he could to help him.
+            {desc}
           </span>
         </p>
       </div>

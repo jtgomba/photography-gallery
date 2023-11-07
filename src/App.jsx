@@ -10,6 +10,8 @@ import ContentItem from "./components/contentItem";
 import StackItem from "./components/stackItem";
 import { useAnimActions, useAnimProps } from "./hooks/animStore";
 
+import { photos } from "./constants";
+
 const body = document.body;
 
 function App() {
@@ -28,7 +30,7 @@ function App() {
   //     onUp: () => {
   //       navigate("next");
   //     },
-  //     tolerance: 10,
+  //     tolerance: 25,
   //     preventDefault: true,
   //   })
   // );
@@ -48,7 +50,7 @@ function App() {
     }
     setIsAnimating(true);
 
-    // scrollObserver.current.enable();
+    //scrollObserver.current.enable();
 
     body.classList.add("oh");
 
@@ -91,8 +93,8 @@ function App() {
       },
       // seems to solve a bug in firefox
       onStart: () =>
-        (document.documentElement.scrollTop = document.body.scrollTop =
-          scrollY),
+      (document.documentElement.scrollTop = document.body.scrollTop =
+        scrollY),
       absoluteOnLeave: true,
     })
       .to(
@@ -296,7 +298,7 @@ function App() {
   }
 
   useEffect(() => {
-    // scrollObserver.current.disable();
+    //scrollObserver.current.disable();
   }, []);
 
   return (
@@ -311,46 +313,18 @@ function App() {
         <div
           className="content"
           ref={content}>
-          <ContentItem
-            id={1}
-            location="Osaka1"
-          />
-          <ContentItem
-            id={2}
-            location="Kyoto2"
-          />
-          <ContentItem
-            id={3}
-            location="Kyoto3"
-          />
-          <ContentItem
-            id={4}
-            location="Kyoto4"
-          />
-          <ContentItem
-            id={5}
-            location="Kyoto5"
-          />
-          <ContentItem
-            id={6}
-            location="Kyoto6"
-          />
-          <ContentItem
-            id={7}
-            location="Kyoto7"
-          />
-          <ContentItem
-            id={8}
-            location="Kyoto8"
-          />
-          <ContentItem
-            id={9}
-            location="Kyoto9"
-          />
-          <ContentItem
-            id={10}
-            location="Kyoto10"
-          />
+          {photos.map((photo) => {
+            return (
+              <ContentItem
+                key={photo.id}
+                id={photo.id}
+                title1={photo.title1}
+                title2={photo.title2}
+                subtitle={photo.subtitle}
+                desc={photo.desc}
+              />
+            )
+          })}
           <button
             className="content__back unbutton"
             ref={backCtrl}
@@ -419,46 +393,16 @@ function App() {
             className="stack"
             ref={stack}>
             <div className="stack__item stack__item--empty"></div>
-            <StackItem
-              callback={callback}
-              id={1}
-            />
-            <StackItem
-              callback={callback}
-              id={2}
-            />
-            <StackItem
-              callback={callback}
-              id={3}
-            />
-            <StackItem
-              callback={callback}
-              id={4}
-            />
-            <StackItem
-              callback={callback}
-              id={5}
-            />
-            <StackItem
-              callback={callback}
-              id={6}
-            />
-            <StackItem
-              callback={callback}
-              id={7}
-            />
-            <StackItem
-              callback={callback}
-              id={8}
-            />
-            <StackItem
-              callback={callback}
-              id={9}
-            />
-            <StackItem
-              callback={callback}
-              id={10}
-            />
+            {photos.map((photo) => {
+              return (
+                <StackItem
+                  key={photo.img}
+                  callback={callback}
+                  img={photo.img}
+                  id={photo.id}
+                />
+              )
+            })}
             <div className="stack__item stack__item--empty"></div>
           </div>
         </div>
